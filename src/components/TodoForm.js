@@ -4,21 +4,26 @@ import uuid from "uuid";
 import { scryRenderedComponentsWithType } from "react-dom/test-utils";
 
 function TodoForm({ addTodo }) {
-  const [todo, setTodo] = useState("");
+  const [todo, setTodo] = useState({ id: "", task: "", completed: false });
 
   const handleTaskInputChange = (event) => {
-    setTodo(event.target.value);
+    setTodo({ ...todo, task: event.target.value });
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    addTodo(todo);
-    setTodo("");
+    if (todo.task.trim()) {
+      addTodo({ ...todo, id: uuid.v4() });
+      setTodo({ ...todo, task: "" });
+    }
   };
 
   return (
-    <form action="/home.php" method="GET" onSubmit={handleSubmit}>
-      <p>My To Do List</p>
-      <TextField label="Task" onChange={handleTaskInputChange} value={todo} />
+    <form onSubmit={handleSubmit}>
+      <TextField
+        label="Task"
+        onChange={handleTaskInputChange}
+        value={todo.task}
+      />
       <Button type="submit">Add</Button>
     </form>
   );
