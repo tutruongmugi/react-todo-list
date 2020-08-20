@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
+import Header from "./components/Header";
+import Main from "./components/Main";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -28,12 +29,23 @@ function App() {
       })
     );
   };
-
+  /*
   return (
     <div className="App">
-      <p>My To Do List </p>
       <TodoForm addTodo={addTodo} />
       <TodoList
+        todos={todos}
+        removeTodo={removeTodo}
+        toggleComplete={toggleComplete}
+      />
+    </div>
+  );
+  */
+  return (
+    <div className="App">
+      <Header />
+      <Main
+        addTodo={addTodo}
         todos={todos}
         removeTodo={removeTodo}
         toggleComplete={toggleComplete}

@@ -18,7 +18,7 @@ function TodoForm({ addTodo }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="todo-form" onSubmit={handleSubmit}>
       <TextField
         label="Task"
         onChange={handleTaskInputChange}
